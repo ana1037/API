@@ -1,23 +1,23 @@
-import Patient from "../models/patient.js";
+import User from "../models/user.js";
 import express from "express";
 
 const router = express.Router();
 
-router.route("/patients")
+router.route("/users")
   .post(async (req, res) => {
     try {
-      const patient = Patient.build(req.body);
-      await patient.save()
+      const user = User.build(req.body);
+      await user.save()
 
-      res.status(201).json({ patient: patient.get({ plain: true }) });
+      res.status(201).json({ user: user.get({ plain: true }) });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
   })
   .get(async (req, res) => {
     try {
-      const patient_records = await Patient.findAll();
-      const patients = patient_records.map((patient) => patient.get({ plain: true }));
+      const user_records = await User.findAll();
+      const users = user_records.map((user) => user.get({ plain: true }));
 
       res.json({ patients });
     } catch(error) {
@@ -25,30 +25,30 @@ router.route("/patients")
     }
   });
 
-router.route("/patients/:id")
+router.route("/users/:id")
   .get(async (req, res) => {
     try {
-      const patient = await Patient.findByPk(req.params.id);
+      const user = await User.findByPk(req.params.id);
 
-      res.json({ patient: patient.get({ plain: true }) });
+      res.json({ user: user.get({ plain: true }) });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
   })
   .patch(async (req, res) => {
     try {
-      const patient = await Patient.findByPk(req.params.id);
-      await patient.update(req.body)
+      const user = await User.findByPk(req.params.id);
+      await user.update(req.body)
 
-      res.json({ patient: patient.get({ plain: true }) });
+      res.json({ user: user.get({ plain: true }) });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
   })
   .delete(async (req, res) => {
     try {
-      const patient = await Patient.findByPk(req.params.id);
-      await patient.destroy();
+      const user = await User.findByPk(req.params.id);
+      await user.destroy();
 
       res.sendStatus(204);
     } catch(error) {

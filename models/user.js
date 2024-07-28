@@ -8,18 +8,24 @@ const schema = {
     unique: true,
     primaryKey: true
   },
-  complete_name: {
+  date: {
     type: DataTypes.STRING
+  },
+  name: {
+    type: DataTypes.STRING
+  },
+  last_name: {
+    type: DataTypes. STRING
   },
   idn: {
     type: DataTypes.STRING
   },
-  cellphone: {
+  procedure:{
     type: DataTypes.STRING
   }
 }
 
-class Patient extends Model {}
-Patient.init(schema, { sequelize: db });
+class Users extends Model {}
+Users.init(schema, { sequelize: db });
 
-export default Patient
+export default Users
