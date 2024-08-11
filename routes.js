@@ -5,6 +5,10 @@ import users_controller from "./controllers/users_controller.js";
 import express from "express";
 
 const router = express.Router();
+
+router.get("/", async (req, res) => {
+  res.render("home");
+});
 router.use(appointments_controller);
 router.use(equipments_controller);
 router.use(patients_controller);

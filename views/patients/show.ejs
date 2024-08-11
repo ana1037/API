@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biiosoftware - Patients</title>
+  </head>
+  <body>
+    <h1><a href="/">Biiosoftware</a></h1>
+    <ul>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/patients">Patients</a></li>
+      <li><a href="/equipments">Equipments</a></li>
+    </ul>
+    <h2>Patient #<%= patient.id %></h2>
+    <strong>Complete Name:</strong>
+    <p><%= patient.complete_name %></p>
+    <br>
+    <strong>IDN:</strong>
+    <p><%= patient.idn %></p>
+    <br>
+    <strong>Cellphone:</strong>
+    <p><%= patient.cellphone %></p>
+    <br>
+    <a href="/patients/<%= patient.id %>/edit">Edit</a> |
+    <a href="/patients/<%= patient.id %>/delete">Delete</a> |
+    <a href="/patients">Patients</a>
+  </body>
+</html>

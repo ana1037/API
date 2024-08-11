@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biiosoftware - Appointments</title>
+  </head>
+  <body>
+    <h1><a href="/">Biiosoftware</a></h1>
+    <ul>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/patients">Patients</a></li>
+      <li><a href="/equipments">Equipments</a></li>
+    </ul>
+    <h2>Appointment #<%= appointment.id %></h2>
+    <strong>Date:</strong>
+    <p><%= appointment.date %></p>
+    <br>
+    <strong>Name:</strong>
+    <p><%= appointment.name %></p>
+    <br>
+    <strong>Last name:</strong>
+    <p><%= appointment.last_name %></p>
+    <br>
+    <strong>IDN:</strong>
+    <p><%= appointment.idn %></p>
+    <br>
+    <strong>Procedure:</strong>
+    <p><%= appointment.procedure %></p>
+    <br>
+    <a href="/appointments/<%= appointment.id %>/edit">Edit</a> |
+    <a href="/appointments/<%= appointment.id %>/delete">Delete</a> |
+    <a href="/appointments">Appointments</a>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biiosoftware - Appointments</title>
+  </head>
+  <body>
+    <h1><a href="/">Biiosoftware</a></h1>
+    <ul>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/patients">Patients</a></li>
+      <li><a href="/equipments">Equipments</a></li>
+    </ul>
+    <h2>Appointments</h2>
+    <a href="/appointments/new">New Appointment</a>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>date</th>
+          <th>name</th>
+          <th>last_name</th>
+          <th>idn</th>
+          <th>procedure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% appointments.forEach((appointment) => { %>
+          <tr>
+            <td><%= appointment.id %></td>
+            <td><%= appointment.date %></td>
+            <td><%= appointment.name %></td>
+            <td><%= appointment.last_name %></td>
+            <td><%= appointment.idn %></td>
+            <td><%= appointment.procedure %></td>
+            <td><a href="/appointments/<%= appointment.id %>">Show</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -3,13 +3,23 @@ import express from "express";
 
 const router = express.Router();
 
+router.get("/patients/new", async (req, res) => {
+  res.render("patients/new");
+});
+
+router.get("/patients/:id/edit", async (req, res) => {
+  const patient = await Patient.findByPk(req.params.id);
+
+  res.render("patients/edit", { patient });
+});
+
 router.route("/patients")
   .post(async (req, res) => {
     try {
       const patient = Patient.build(req.body);
       await patient.save()
 
-      res.status(201).json({ patient: patient.get({ plain: true }) });
+      res.redirect(`/patients/${patient.id}`);
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
@@ -19,7 +29,7 @@ router.route("/patients")
       const patient_records = await Patient.findAll();
       const patients = patient_records.map((patient) => patient.get({ plain: true }));
 
-      res.json({ patients });
+      res.render("patients/index", { patients });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
@@ -30,27 +40,28 @@ router.route("/patients/:id")
     try {
       const patient = await Patient.findByPk(req.params.id);
 
-      res.json({ patient: patient.get({ plain: true }) });
+      res.render("patients/show", { patient: patient.get({ plain: true }) });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
   })
-  .patch(async (req, res) => {
+  .post(async (req, res) => {
     try {
       const patient = await Patient.findByPk(req.params.id);
       await patient.update(req.body)
 
-      res.json({ patient: patient.get({ plain: true }) });
+      res.redirect(`/patients/${patient.id}`);
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
-  })
-  .delete(async (req, res) => {
+  });
+
+  router.get("/patients/:id/delete", async (req, res) => {
     try {
       const patient = await Patient.findByPk(req.params.id);
       await patient.destroy();
 
-      res.sendStatus(204);
+      res.redirect("/patients");
     } catch(error) {
       res.status(500).json({ error: error.message });
     }

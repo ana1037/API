@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biiosoftware - Equipments</title>
+  </head>
+  <body>
+    <h1><a href="/">Biiosoftware</a></h1>
+    <ul>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/patients">Patients</a></li>
+      <li><a href="/equipments">Equipments</a></li>
+    </ul>
+    <h2>Equipments</h2>
+    <a href="/equipments/new">New Equipment</a>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>model_name</th>
+          <th>name</th>
+          <th>serial_number</th>
+          <th>status</th>
+          <th>location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% equipments.forEach((equipment) => { %>
+          <tr>
+            <td><%= equipment.id %></td>
+            <td><%= equipment.model_name %></td>
+            <td><%= equipment.name %></td>
+            <td><%= equipment.serial_number %></td>
+            <td><%= equipment.status %></td>
+            <td><%= equipment.location %></td>
+            <td><a href="/equipments/<%= equipment.id %>">Show</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

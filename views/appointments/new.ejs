@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biiosoftware - Appointments</title>
+  </head>
+  <body>
+    <h1><a href="/">Biiosoftware</a></h1>
+    <ul>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/patients">Patients</a></li>
+      <li><a href="/equipments">Equipments</a></li>
+    </ul>
+    <h2>New Appointment</h2>
+    <form action="/appointments" method="post">
+      <p>
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+      </p>
+      <p>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+      </p>
+      <p>
+        <label for="last_name">Last name</label>
+        <input type="text" name="last_name" id="last_name">
+      </p>
+      <p>
+        <label for="idn">IDN</label>
+        <input type="text" name="idn" id="idn">
+      </p>
+      <p>
+        <label for="procedure">Procedure</label>
+        <input type="text" name="procedure" id="procedure">
+      </p>
+
+      <input type="submit" value="Save">
+    </form>
+  </body>
+</html>

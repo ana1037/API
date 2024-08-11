@@ -3,13 +3,23 @@ import express from "express";
 
 const router = express.Router();
 
+router.get("/appointments/new", async (req, res) => {
+  res.render("appointments/new");
+});
+
+router.get("/appointments/:id/edit", async (req, res) => {
+  const appointment = await Appointment.findByPk(req.params.id);
+
+  res.render("appointments/edit", { appointment: appointment.get({ plain: true }) })
+});
+
 router.route("/appointments")
   .post(async (req, res) => {
     try {
       const appointment = Appointment.build(req.body);
       await appointment.save()
 
-      res.status(201).json({ appointment: appointment.get({ plain: true }) });
+      res.redirect(`/appointments/${appointment.id}`);
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
@@ -19,7 +29,7 @@ router.route("/appointments")
       const appointment_records = await Appointment.findAll();
       const appointments = appointment_records.map((appointment) => appointment.get({ plain: true }));
 
-      res.json({ appointments });
+      res.render("appointments/index", { appointments });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
@@ -30,27 +40,28 @@ router.route("/appointments/:id")
     try {
       const appointment = await Appointment.findByPk(req.params.id);
 
-      res.json({ appointment: appointment.get({ plain: true }) });
+      res.render("appointments/show", { appointment: appointment.get({ plain: true }) });
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
   })
-  .patch(async (req, res) => {
+  .post(async (req, res) => {
     try {
       const appointment = await Appointment.findByPk(req.params.id);
       await appointment.update(req.body)
 
-      res.json({ appointment: appointment.get({ plain: true }) });
+      res.redirect(`/appointments/${appointment.id}`);
     } catch(error) {
       res.status(500).json({ error: error.message });
     }
-  })
-  .delete(async (req, res) => {
+  });
+
+  router.get("/appointments/:id/delete", async (req, res) => {
     try {
       const appointment = await Appointment.findByPk(req.params.id);
       await appointment.destroy();
 
-      res.sendStatus(204);
+      res.redirect("/appointments");
     } catch(error) {
       res.status(500).json({ error: error.message });
     }

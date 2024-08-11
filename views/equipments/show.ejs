@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biiosoftware - Equipments</title>
+  </head>
+  <body>
+    <h1><a href="/">Biiosoftware</a></h1>
+    <ul>
+      <li><a href="/appointments">Appointments</a></li>
+      <li><a href="/patients">Patients</a></li>
+      <li><a href="/equipments">Equipments</a></li>
+    </ul>
+    <h2>Equipment #<%= equipment.id %></h2>
+    <strong>model_name:</strong>
+    <p><%= equipment.model_name %></p>
+    <br>
+    <strong>name:</strong>
+    <p><%= equipment.name %></p>
+    <br>
+    <strong>serial_number:</strong>
+    <p><%= equipment.serial_number %></p>
+    <br>
+    <strong>status:</strong>
+    <p><%= equipment.status %></p>
+    <br>
+    <strong>location:</strong>
+    <p><%= equipment.location %></p>
+    <br>
+    <a href="/equipments/<%= equipment.id %>/edit">Edit</a> |
+    <a href="/equipments/<%= equipment.id %>/delete">Delete</a> |
+    <a href="/equipments">Equipments</a>
+  </body>
+</html>
